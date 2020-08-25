@@ -19,13 +19,11 @@ import traceback
 application = Flask(__name__)
 
 
-model = pickle.load(open("./models/tfidf3.pickle", "rb"))
+model = pickle.load(open("./models/tfidf3.pickle", "rb")) # Модель на основе TF-IDF и RandomForestClassfier
 
 
-# тестовый вывод
 @application.route("/")  
 def hello():
-    #resp = {'message':"Hello World!"}
     resp = {'message':"Hello World!"}
     response = jsonify(resp)
     
@@ -53,7 +51,7 @@ def registration():
             for c in category:
                 for cc in c:
                     i+=1
-                    s = s + f"p(c{i}) = "+ str(cc) + ";    "
+                    s = s + f"p(c{i}) = "+ str(cc) + ";    " # Для красоты вывода
             category = s[:-5]
             resp['category'] = category
             resp['message'] = json_params['user_message'] 
