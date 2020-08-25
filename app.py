@@ -19,7 +19,7 @@ import traceback
 application = Flask(__name__)
 
 
-model = pickle.load(open("./models/tfidf2.pickle", "rb"))
+model = pickle.load(open("./models/tfidf3.pickle", "rb"))
 
 
 # тестовый вывод
@@ -31,8 +31,6 @@ def hello():
     
     return response
 
-# предикт категории
-#{"user_message":"example123rfssg gsfgfd"}
 @application.route("/categoryPrediction" , methods=['GET', 'POST'])  
 def registration():
     resp = {'message':'',
@@ -43,9 +41,6 @@ def registration():
         json_params = json.loads(getData) 
     
         
-        #напишите прогноз и верните его в ответе в параметре 'prediction'
-
-        #category = model.predict(vec.transform([json_params['user_message']]).toarray()).tolist()
         if len(json_params['user_message']) == 0:
             resp['category'] = -1
             resp['message'] = json_params['user_message']
