@@ -48,10 +48,11 @@ def registration():
             category = model.predict_proba(textlist)
             s = ''
             i = 0
+            catlist = ["afs", "other", "ps"]
             for c in category:
                 for cc in c:
                     i+=1
-                    s = s + f"p(c{i}) = "+ str(cc) + ";    " # Для красоты вывода
+                    s = s + f"p({catlist[i-1]}) = "+ str(cc) + ";    " # Для красоты вывода
             category = s[:-5]
             resp['category'] = category
             resp['message'] = json_params['user_message'] 
